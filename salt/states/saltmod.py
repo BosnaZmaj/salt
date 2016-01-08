@@ -251,7 +251,7 @@ def state(
             if m_state:
                 m_state = salt.utils.check_state_result(m_ret)
 
-        if not m_state:
+        if not m_state or not isinstance(m_ret, dict):
             if minion not in fail_minions:
                 fail.add(minion)
             failures[minion] = m_ret or 'Minion did not respond'
